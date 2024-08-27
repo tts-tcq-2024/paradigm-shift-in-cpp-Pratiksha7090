@@ -24,6 +24,13 @@ BreachType classifyBreach(float value, const BatteryParameter& parameter) {
     }
     return BreachType::NORMAL;
 }
+void printBreachMessage(const BatteryParameter& parameter, BreachType breachType) {
+    if (breachType == BreachType::TOO_LOW) {
+        cout << parameter.name << " too low!\n";
+    } else if (breachType == BreachType::TOO_HIGH) {
+        cout << parameter.name << " too high!\n";
+    }
+}
 
 bool checkAndReportBreach(float value, const BatteryParameter& parameter) {
     BreachType breachType = classifyBreach(value, parameter);
@@ -34,13 +41,7 @@ bool checkAndReportBreach(float value, const BatteryParameter& parameter) {
     return true;
 }
 
-void printBreachMessage(const BatteryParameter& parameter, BreachType breachType) {
-    if (breachType == BreachType::TOO_LOW) {
-        cout << parameter.name << " too low!\n";
-    } else if (breachType == BreachType::TOO_HIGH) {
-        cout << parameter.name << " too high!\n";
-    }
-}
+
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
     BatteryParameter temperatureParam("Temperature", 0, 45);
